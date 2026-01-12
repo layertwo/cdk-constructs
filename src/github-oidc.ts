@@ -1,13 +1,12 @@
-
-import { Duration, Stack } from 'aws-cdk-lib';
+import { Duration, Stack } from "aws-cdk-lib";
 import {
   Effect,
   OpenIdConnectProvider,
   PolicyStatement,
   Role,
   WebIdentityPrincipal,
-} from 'aws-cdk-lib/aws-iam';
-import { Construct } from 'constructs';
+} from "aws-cdk-lib/aws-iam";
+import { Construct } from "constructs";
 
 /**
  * Properties for GitHubOidcRole
@@ -56,7 +55,6 @@ export interface GitHubOidcRoleProps {
 
 // Reference: https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws
 export class GitHubOidcRole extends Role {
-
   constructor(scope: Construct, id: string, props: GitHubOidcRoleProps) {
     const stack = Stack.of(scope);
     // Build the subject claim for the trust policy
@@ -68,15 +66,17 @@ export class GitHubOidcRole extends Role {
       subjectClaim += `ref:refs/heads/${props.branch}`;
     } else {
       // Allow any branch/environment
-      subjectClaim += '*';
+      subjectClaim += "*";
     }
 
     // Create or reference the GitHub OIDC provider
-    let provider = stack.node.tryFindChild('GitHubOidcProvider') as OpenIdConnectProvider | undefined;
+    let provider = stack.node.tryFindChild("GitHubOidcProvider") as
+      | OpenIdConnectProvider
+      | undefined;
     if (!provider) {
-      provider = new OpenIdConnectProvider(stack, 'GitHubOidcProvider', {
-        url: 'https://token.actions.githubusercontent.com',
-        clientIds: ['sts.amazonaws.com'],
+      provider = new OpenIdConnectProvider(stack, "GitHubOidcProvider", {
+        url: "https://token.actions.githubusercontent.com",
+        clientIds: ["sts.amazonaws.com"],
       });
     }
 
@@ -84,10 +84,10 @@ export class GitHubOidcRole extends Role {
       ...props,
       assumedBy: new WebIdentityPrincipal(provider.openIdConnectProviderArn, {
         StringEquals: {
-          'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
+          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
         },
         StringLike: {
-          'token.actions.githubusercontent.com:sub': subjectClaim,
+          "token.actions.githubusercontent.com:sub": subjectClaim,
         },
       }),
     });
@@ -95,15 +95,15 @@ export class GitHubOidcRole extends Role {
     this.addToPolicy(
       new PolicyStatement({
         effect: Effect.ALLOW,
-        actions: ['sts:AssumeRole'],
-        resources: ['*'],
+        actions: ["sts:AssumeRole"],
+        resources: ["*"],
         conditions: {
           StringEquals: {
-            'iam:ResourceTag/aws-cdk:bootstrap-role': [
-              'deploy',
-              'file-publishing',
-              'image-publishing',
-              'lookup',
+            "iam:ResourceTag/aws-cdk:bootstrap-role": [
+              "deploy",
+              "file-publishing",
+              "image-publishing",
+              "lookup",
             ],
           },
         },

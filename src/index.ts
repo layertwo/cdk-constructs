@@ -1,1 +1,1 @@
-export * from './github-oidc';
+export * from "./github-oidc";
