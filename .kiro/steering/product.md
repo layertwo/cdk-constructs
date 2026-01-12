@@ -1,5 +1,11 @@
 # Product Overview
 
-This is a CDK construct library for AWS infrastructure as code. The library provides reusable TypeScript constructs that can be used to define AWS resources in CDK applications.
+**layertwo-cdk-constructs** is an AWS CDK construct library providing reusable TypeScript constructs for infrastructure as code.
 
-The project is published as an npm package and follows AWS CDK best practices for construct library development.
+## Purpose
+
+This library simplifies AWS infrastructure deployment by providing well-tested, composable CDK constructs that follow AWS best practices.
+
+## Publishing
+
+Published as an npm package with JSII support for multi-language consumption (TypeScript, Python, Java, C#, Go).
