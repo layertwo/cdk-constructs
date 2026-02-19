@@ -18,10 +18,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   mutableBuild: true,
   depsUpgrade: false,
-
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  packageName: "@layertwo/cdk-constructs",
+  npmRegistryUrl: "https://npm.pkg.github.com",
+  npmTokenSecret: "GITHUB_TOKEN",
 });
 project.synth();
