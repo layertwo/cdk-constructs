@@ -12,7 +12,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   mergify: false,
   vscode: true,
   prettier: true,
-mutableBuild: true,
+  mutableBuild: true,
   depsUpgrade: false,
   packageName: "@layertwo/cdk-constructs",
   npmRegistryUrl: "https://npm.pkg.github.com",
