@@ -20,6 +20,5 @@ const project = new awscdk.AwsCdkConstructLibrary({
   depsUpgrade: false,
   packageName: "@layertwo/cdk-constructs",
   npmRegistryUrl: "https://npm.pkg.github.com",
-  npmTokenSecret: "GITHUB_TOKEN",
 });
 project.synth();
