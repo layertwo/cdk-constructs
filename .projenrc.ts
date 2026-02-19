@@ -17,6 +17,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     module: "layertwo_cdk_constructs",
   },
   mutableBuild: true,
+  depsUpgrade: false,
 
   // deps: [],                /* Runtime dependencies of this module. */
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */

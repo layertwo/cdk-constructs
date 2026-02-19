@@ -38,7 +38,6 @@
     "actions/download-artifact",
     "amannn/action-semantic-pull-request",
     "actions/setup-node",
-    "actions/upload-artifact",
-    "peter-evans/create-pull-request"
+    "actions/upload-artifact"
   ]
 }
