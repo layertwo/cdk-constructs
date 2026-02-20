@@ -80,13 +80,13 @@ To modify these, update `.projenrc.ts` and run `npx projen`.
 
 #### Source Code
 - Place all construct implementations in `src/`
-- One construct per file (e.g., `github-oidc.ts`)
+- One construct per file (e.g., `iam.ts`)
 - Export all public APIs through `src/index.ts`
 - Use clear, descriptive names for constructs and files
 
 #### Testing
 - Mirror source structure in `test/` directory
-- Name test files with `.test.ts` suffix (e.g., `github-oidc.test.ts`)
+- Name test files with `.test.ts` suffix (e.g., `iam.test.ts`)
 - Use CDK assertions library for infrastructure testing
 - Group related tests with `describe()` blocks
 - Keep tests focused and composable
