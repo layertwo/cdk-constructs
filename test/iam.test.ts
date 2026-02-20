@@ -2,7 +2,7 @@ import { Stack } from "aws-cdk-lib";
 import { Template, Match } from "aws-cdk-lib/assertions";
 import { GitHubOidcRole } from "../src";
 
-describe("github-oidc", () => {
+describe("GitHubOidcRole", () => {
   const stack = new Stack();
   new GitHubOidcRole(stack, "RoleWithOwnerRepo", {
     roleName: "GitHubRoleWithOwnerRepo",
