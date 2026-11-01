@@ -2,9 +2,9 @@
 
 ## Product Overview
 
-**layertwo-cdk-constructs** is an AWS CDK construct library providing reusable TypeScript constructs for infrastructure as code. This library simplifies AWS infrastructure deployment by providing well-tested, composable CDK constructs that follow AWS best practices.
+**@layertwo/cdk-constructs** is an AWS CDK construct library providing reusable TypeScript constructs for infrastructure as code. This library simplifies AWS infrastructure deployment by providing well-tested, composable CDK constructs that follow AWS best practices.
 
-Published as an npm package with JSII support for multi-language consumption (TypeScript, Python, Java, C#, Go).
+Published to GitHub Packages (`https://npm.pkg.github.com`) as a JSII library. Only the TypeScript/JS package is published today — no Python, Java, C#, or Go targets are configured in `.projenrc.ts`.
 
 ## Technology Stack
 
@@ -37,6 +37,8 @@ This project uses **Projen** for project configuration and build management. Pro
 │   └── *.ts               # Individual construct implementations
 ├── test/                   # Jest test files
 │   └── *.test.ts          # Test files matching src structure
+├── docs/                   # Dated design and implementation plan docs
+│   └── plans/             # e.g. 2026-02-18-new-constructs-design.md
 ├── lib/                    # Compiled JavaScript output (generated)
 ├── dist/                   # JSII package output (generated)
 ├── coverage/               # Test coverage reports (generated)
@@ -143,7 +145,9 @@ npm run package-all
 ```bash
 # Regenerate project files from .projenrc.ts
 npx projen
-
-# Upgrade dependencies
-npm run upgrade
 ```
+
+Dependency upgrades arrive as Renovate PRs (`renovate.json5`); there is no local upgrade task.
+
+### Releasing
+`mainline` is the release branch. Merging conventional-commit messages there triggers `release.yml`, which bumps the version and publishes.
