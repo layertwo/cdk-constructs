@@ -48,6 +48,7 @@ new DnsValidatedCertificate(scope: Construct, id: string, props: DnsValidatedCer
 | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.with">with</a></code> | Applies one or more mixins to this construct. |
+| <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.applyCrossStackReferenceStrength">applyCrossStackReferenceStrength</a></code> | Override the cross-stack reference strength for this resource. |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.metricDaysToExpiry">metricDaysToExpiry</a></code> | Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day. |
 
@@ -78,7 +79,27 @@ constructs.
 
 - *Type:* ...constructs.IMixin[]
 
-The mixins to apply.
+---
+
+##### `applyCrossStackReferenceStrength` <a name="applyCrossStackReferenceStrength" id="@layertwo/cdk-constructs.DnsValidatedCertificate.applyCrossStackReferenceStrength"></a>
+
+```typescript
+public applyCrossStackReferenceStrength(strength: ReferenceStrength): void
+```
+
+Override the cross-stack reference strength for this resource.
+
+When set, any cross-stack reference to this resource will use the specified
+mechanism instead of the global default determined by the
+`@aws-cdk/core:defaultCrossStackReferences` context key. This is useful for
+selectively weakening specific references to avoid the "deadly embrace" problem
+without changing the app-wide default.
+
+###### `strength`<sup>Required</sup> <a name="strength" id="@layertwo/cdk-constructs.DnsValidatedCertificate.applyCrossStackReferenceStrength.parameter.strength"></a>
+
+- *Type:* aws-cdk-lib.ReferenceStrength
+
+The reference strength to use for this resource.
 
 ---
 
@@ -230,9 +251,10 @@ Import a certificate.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.property.env">env</a></code> | <code>aws-cdk-lib.interfaces.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.property.certificateArn">certificateArn</a></code> | <code>string</code> | The certificate's ARN. |
+| <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificate.property.certificateRef">certificateRef</a></code> | <code>aws-cdk-lib.interfaces.aws_certificatemanager.CertificateReference</code> | A reference to a Certificate resource. |
 
 ---
 
@@ -254,16 +276,17 @@ The tree node.
 public readonly env: ResourceEnvironment;
 ```
 
-- *Type:* aws-cdk-lib.ResourceEnvironment
+- *Type:* aws-cdk-lib.interfaces.ResourceEnvironment
 
 The environment this resource belongs to.
 
-For resources that are created and managed by the CDK
-(generally, those created by creating new class instances like Role, Bucket, etc.),
-this is always the same as the environment of the stack they belong to;
-however, for imported resources
-(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
-that might be different than the stack they were imported into.
+For resources that are created and managed in a Stack (those created by
+creating new class instances like `new Role()`, `new Bucket()`, etc.), this
+is always the same as the environment of the stack they belong to.
+
+For referenced resources (those obtained from referencing methods like
+`Role.fromRoleArn()`, `Bucket.fromBucketName()`, etc.), they might be
+different than the stack they were imported into.
 
 ---
 
@@ -288,6 +311,18 @@ public readonly certificateArn: string;
 - *Type:* string
 
 The certificate's ARN.
+
+---
+
+##### `certificateRef`<sup>Required</sup> <a name="certificateRef" id="@layertwo/cdk-constructs.DnsValidatedCertificate.property.certificateRef"></a>
+
+```typescript
+public readonly certificateRef: CertificateReference;
+```
+
+- *Type:* aws-cdk-lib.interfaces.aws_certificatemanager.CertificateReference
+
+A reference to a Certificate resource.
 
 ---
 
@@ -353,6 +388,7 @@ new GitHubOidcRole(scope: Construct, id: string, props: GitHubOidcRoleProps)
 | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.with">with</a></code> | Applies one or more mixins to this construct. |
+| <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.applyCrossStackReferenceStrength">applyCrossStackReferenceStrength</a></code> | Override the cross-stack reference strength for this resource. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.applyRemovalPolicy">applyRemovalPolicy</a></code> | Skip applyRemovalPolicy if role synthesis is prevented by customizeRoles. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.addManagedPolicy">addManagedPolicy</a></code> | Attaches a managed policy to this role. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.addToPolicy">addToPolicy</a></code> | Add to the policy of this principal. |
@@ -390,7 +426,27 @@ constructs.
 
 - *Type:* ...constructs.IMixin[]
 
-The mixins to apply.
+---
+
+##### `applyCrossStackReferenceStrength` <a name="applyCrossStackReferenceStrength" id="@layertwo/cdk-constructs.GitHubOidcRole.applyCrossStackReferenceStrength"></a>
+
+```typescript
+public applyCrossStackReferenceStrength(strength: ReferenceStrength): void
+```
+
+Override the cross-stack reference strength for this resource.
+
+When set, any cross-stack reference to this resource will use the specified
+mechanism instead of the global default determined by the
+`@aws-cdk/core:defaultCrossStackReferences` context key. This is useful for
+selectively weakening specific references to avoid the "deadly embrace" problem
+without changing the app-wide default.
+
+###### `strength`<sup>Required</sup> <a name="strength" id="@layertwo/cdk-constructs.GitHubOidcRole.applyCrossStackReferenceStrength.parameter.strength"></a>
+
+- *Type:* aws-cdk-lib.ReferenceStrength
+
+The reference strength to use for this resource.
 
 ---
 
@@ -818,14 +874,16 @@ Return whether the given object is a Role.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.env">env</a></code> | <code>aws-cdk-lib.interfaces.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.assumeRoleAction">assumeRoleAction</a></code> | <code>string</code> | When this Principal is used in an AssumeRole policy, the action to use. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.grantPrincipal">grantPrincipal</a></code> | <code>aws-cdk-lib.aws_iam.IPrincipal</code> | The principal to grant permissions to. |
+| <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.grants">grants</a></code> | <code>aws-cdk-lib.aws_iam.RoleGrants</code> | Collection of grant methods for a Role. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.policyFragment">policyFragment</a></code> | <code>aws-cdk-lib.aws_iam.PrincipalPolicyFragment</code> | Returns the role. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.roleArn">roleArn</a></code> | <code>string</code> | Returns the ARN of this role. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.roleId">roleId</a></code> | <code>string</code> | Returns the stable and unique string identifying the role. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.roleName">roleName</a></code> | <code>string</code> | Returns the name of the role. |
+| <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.roleRef">roleRef</a></code> | <code>aws-cdk-lib.interfaces.aws_iam.RoleReference</code> | A reference to a Role resource. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.assumeRolePolicy">assumeRolePolicy</a></code> | <code>aws-cdk-lib.aws_iam.PolicyDocument</code> | The assume role policy document associated with this role. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.permissionsBoundary">permissionsBoundary</a></code> | <code>aws-cdk-lib.aws_iam.IManagedPolicy</code> | Returns the permissions boundary attached to this role. |
 | <code><a href="#@layertwo/cdk-constructs.GitHubOidcRole.property.principalAccount">principalAccount</a></code> | <code>string</code> | The AWS account ID of this principal. |
@@ -850,16 +908,17 @@ The tree node.
 public readonly env: ResourceEnvironment;
 ```
 
-- *Type:* aws-cdk-lib.ResourceEnvironment
+- *Type:* aws-cdk-lib.interfaces.ResourceEnvironment
 
 The environment this resource belongs to.
 
-For resources that are created and managed by the CDK
-(generally, those created by creating new class instances like Role, Bucket, etc.),
-this is always the same as the environment of the stack they belong to;
-however, for imported resources
-(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
-that might be different than the stack they were imported into.
+For resources that are created and managed in a Stack (those created by
+creating new class instances like `new Role()`, `new Bucket()`, etc.), this
+is always the same as the environment of the stack they belong to.
+
+For referenced resources (those obtained from referencing methods like
+`Role.fromRoleArn()`, `Bucket.fromBucketName()`, etc.), they might be
+different than the stack they were imported into.
 
 ---
 
@@ -896,6 +955,18 @@ public readonly grantPrincipal: IPrincipal;
 - *Type:* aws-cdk-lib.aws_iam.IPrincipal
 
 The principal to grant permissions to.
+
+---
+
+##### `grants`<sup>Required</sup> <a name="grants" id="@layertwo/cdk-constructs.GitHubOidcRole.property.grants"></a>
+
+```typescript
+public readonly grants: RoleGrants;
+```
+
+- *Type:* aws-cdk-lib.aws_iam.RoleGrants
+
+Collection of grant methods for a Role.
 
 ---
 
@@ -947,6 +1018,18 @@ public readonly roleName: string;
 - *Type:* string
 
 Returns the name of the role.
+
+---
+
+##### `roleRef`<sup>Required</sup> <a name="roleRef" id="@layertwo/cdk-constructs.GitHubOidcRole.property.roleRef"></a>
+
+```typescript
+public readonly roleRef: RoleReference;
+```
+
+- *Type:* aws-cdk-lib.interfaces.aws_iam.RoleReference
+
+A reference to a Role resource.
 
 ---
 
@@ -1055,22 +1138,24 @@ new SecureBucket(scope: Construct, id: string, props?: SecureBucketProps)
 | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.with">with</a></code> | Applies one or more mixins to this construct. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.applyCrossStackReferenceStrength">applyCrossStackReferenceStrength</a></code> | Override the cross-stack reference strength for this resource. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.addEventNotification">addEventNotification</a></code> | Adds a bucket notification event destination. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.addObjectCreatedNotification">addObjectCreatedNotification</a></code> | Subscribes a destination to receive notifications when an object is created in the bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.addObjectRemovedNotification">addObjectRemovedNotification</a></code> | Subscribes a destination to receive notifications when an object is removed from the bucket. |
-| <code><a href="#@layertwo/cdk-constructs.SecureBucket.addReplicationPolicy">addReplicationPolicy</a></code> | Function to add required permissions to the destination bucket for cross account replication. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.addReplicationPolicy">addReplicationPolicy</a></code> | Adds resource policy statements to this bucket that permit cross-account replication. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.addToResourcePolicy">addToResourcePolicy</a></code> | Adds a statement to the resource policy for a principal (i.e. account/role/service) to perform actions on this bucket and/or its contents. Use `bucketArn` and `arnForObjects(keys)` to obtain ARNs for this bucket or objects. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.arnForObjects">arnForObjects</a></code> | Returns an ARN that represents all objects within the bucket that match the key pattern specified. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.enableEventBridgeNotification">enableEventBridgeNotification</a></code> | Enables event bridge notification, causing all events below to be sent to EventBridge:. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantDelete">grantDelete</a></code> | Grants s3:DeleteObject* permission to an IAM principal for objects in this bucket. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantOnKey">grantOnKey</a></code> | Gives permissions to a grantable entity to perform actions on the encryption key. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantPublicAccess">grantPublicAccess</a></code> | Allows unrestricted access to objects from this bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantPut">grantPut</a></code> | Grants s3:PutObject* and s3:Abort* permissions for this bucket to an IAM principal. |
-| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantPutAcl">grantPutAcl</a></code> | Grant the given IAM identity permissions to modify the ACLs of objects in the given Bucket. |
-| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantRead">grantRead</a></code> | Grant read permissions for this bucket and it's contents to an IAM principal (Role/Group/User). |
-| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantReadWrite">grantReadWrite</a></code> | Grants read/write permissions for this bucket and it's contents to an IAM principal (Role/Group/User). |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantPutAcl">grantPutAcl</a></code> | The use of this method is discouraged. Please use `grants.putAcl()` instead. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantRead">grantRead</a></code> | Grant read permissions for this bucket and its contents to an IAM principal (Role/Group/User). |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantReadWrite">grantReadWrite</a></code> | The use of this method is discouraged. Please use `grants.readWrite()` instead. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantReplicationPermission">grantReplicationPermission</a></code> | Grant replication permission to a principal. This method allows the principal to perform replication operations on this bucket. |
-| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantWrite">grantWrite</a></code> | Grant write permissions to this bucket to an IAM principal. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.grantWrite">grantWrite</a></code> | The use of this method is discouraged. Please use `grants.write()` instead. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.onCloudTrailEvent">onCloudTrailEvent</a></code> | Define a CloudWatch event that triggers when something happens to this repository. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.onCloudTrailPutObject">onCloudTrailPutObject</a></code> | Defines an AWS CloudWatch event that triggers when an object is uploaded to the specified paths (keys) in this bucket using the PutObject API call. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.onCloudTrailWriteObject">onCloudTrailWriteObject</a></code> | Defines an AWS CloudWatch event that triggers when an object at the specified paths (keys) in this bucket are written to. |
@@ -1110,7 +1195,27 @@ constructs.
 
 - *Type:* ...constructs.IMixin[]
 
-The mixins to apply.
+---
+
+##### `applyCrossStackReferenceStrength` <a name="applyCrossStackReferenceStrength" id="@layertwo/cdk-constructs.SecureBucket.applyCrossStackReferenceStrength"></a>
+
+```typescript
+public applyCrossStackReferenceStrength(strength: ReferenceStrength): void
+```
+
+Override the cross-stack reference strength for this resource.
+
+When set, any cross-stack reference to this resource will use the specified
+mechanism instead of the global default determined by the
+`@aws-cdk/core:defaultCrossStackReferences` context key. This is useful for
+selectively weakening specific references to avoid the "deadly embrace" problem
+without changing the app-wide default.
+
+###### `strength`<sup>Required</sup> <a name="strength" id="@layertwo/cdk-constructs.SecureBucket.applyCrossStackReferenceStrength.parameter.strength"></a>
+
+- *Type:* aws-cdk-lib.ReferenceStrength
+
+The reference strength to use for this resource.
 
 ---
 
@@ -1151,7 +1256,8 @@ Adds a bucket notification event destination.
 ```typescript
    declare const myLambda: lambda.Function;
    const bucket = new s3.Bucket(this, 'MyBucket');
-   bucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(myLambda), {prefix: 'home/myusername/*'});
+   const filter: s3.NotificationKeyFilter = { prefix: 'home/myusername/*' };
+   bucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(myLambda), filter);
 ```
 
 
@@ -1243,15 +1349,22 @@ Filters (see onEvent).
 public addReplicationPolicy(roleArn: string, accessControlTransition?: boolean, account?: string): void
 ```
 
-Function to add required permissions to the destination bucket for cross account replication.
+Adds resource policy statements to this bucket that permit cross-account replication.
 
-These permissions will be added as a resource based policy on the bucket
+Call this method on the destination bucket. If the destination bucket is a referenced bucket,
+its policy cannot be modified by CDK and the permissions must be added in the destination
+account.
 
-> [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html)
+To change replica ownership to the destination bucket owner, set `accessControlTransition` to
+true and provide the source bucket owner's account ID.
+
+> [https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-change-owner.html](https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-change-owner.html)
 
 ###### `roleArn`<sup>Required</sup> <a name="roleArn" id="@layertwo/cdk-constructs.SecureBucket.addReplicationPolicy.parameter.roleArn"></a>
 
 - *Type:* string
+
+The ARN of the source bucket's replication role.
 
 ---
 
@@ -1259,11 +1372,17 @@ These permissions will be added as a resource based policy on the bucket
 
 - *Type:* boolean
 
+Whether to change replica ownership to the destination bucket owner.
+
 ---
 
 ###### `account`<sup>Optional</sup> <a name="account" id="@layertwo/cdk-constructs.SecureBucket.addReplicationPolicy.parameter.account"></a>
 
 - *Type:* string
+
+The source bucket owner's AWS account ID.
+
+Required when `accessControlTransition` is true.
 
 ---
 
@@ -1336,6 +1455,10 @@ public grantDelete(identity: IGrantable, objectsKeyPattern?: any): Grant
 
 Grants s3:DeleteObject* permission to an IAM principal for objects in this bucket.
 
+The use of this method is discouraged. Please use `grants.delete()` instead.
+
+[disable-awslint:no-grants]
+
 ###### `identity`<sup>Required</sup> <a name="identity" id="@layertwo/cdk-constructs.SecureBucket.grantDelete.parameter.identity"></a>
 
 - *Type:* aws-cdk-lib.aws_iam.IGrantable
@@ -1351,6 +1474,26 @@ The principal.
 Restrict the permission to a certain key pattern (default '*').
 
 Parameter type is `any` but `string` should be passed in.
+
+---
+
+##### `grantOnKey` <a name="grantOnKey" id="@layertwo/cdk-constructs.SecureBucket.grantOnKey"></a>
+
+```typescript
+public grantOnKey(grantee: IGrantable, actions: ...string[]): GrantOnKeyResult
+```
+
+Gives permissions to a grantable entity to perform actions on the encryption key.
+
+###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureBucket.grantOnKey.parameter.grantee"></a>
+
+- *Type:* aws-cdk-lib.aws_iam.IGrantable
+
+---
+
+###### `actions`<sup>Required</sup> <a name="actions" id="@layertwo/cdk-constructs.SecureBucket.grantOnKey.parameter.actions"></a>
+
+- *Type:* ...string[]
 
 ---
 
@@ -1381,6 +1524,11 @@ Note that if this `IBucket` refers to an existing bucket, possibly not
 managed by CloudFormation, this method will have no effect, since it's
 impossible to modify the policy of an existing bucket.
 
+
+The use of this method is discouraged. Please use `grants.publicAccess()` instead.
+
+[disable-awslint:no-grants]
+
 ###### `allowedActions`<sup>Required</sup> <a name="allowedActions" id="@layertwo/cdk-constructs.SecureBucket.grantPublicAccess.parameter.allowedActions"></a>
 
 - *Type:* ...string[]
@@ -1410,6 +1558,11 @@ Grants s3:PutObject* and s3:Abort* permissions for this bucket to an IAM princip
 If encryption is used, permission to use the key to encrypt the contents
 of written files will also be granted to the same principal.
 
+
+The use of this method is discouraged. Please use `grants.put()` instead.
+
+[disable-awslint:no-grants]
+
 ###### `identity`<sup>Required</sup> <a name="identity" id="@layertwo/cdk-constructs.SecureBucket.grantPut.parameter.identity"></a>
 
 - *Type:* aws-cdk-lib.aws_iam.IGrantable
@@ -1434,11 +1587,9 @@ Parameter type is `any` but `string` should be passed in.
 public grantPutAcl(identity: IGrantable, objectsKeyPattern?: string): Grant
 ```
 
-Grant the given IAM identity permissions to modify the ACLs of objects in the given Bucket.
+The use of this method is discouraged. Please use `grants.putAcl()` instead.
 
-If your application has the '@aws-cdk/aws-s3:grantWriteWithoutAcl' feature flag set,
-calling `grantWrite` or `grantReadWrite` no longer grants permissions to modify the ACLs of the objects;
-in this case, if you need to modify object ACLs, call this method explicitly.
+[disable-awslint:no-grants]
 
 ###### `identity`<sup>Required</sup> <a name="identity" id="@layertwo/cdk-constructs.SecureBucket.grantPutAcl.parameter.identity"></a>
 
@@ -1458,10 +1609,15 @@ in this case, if you need to modify object ACLs, call this method explicitly.
 public grantRead(identity: IGrantable, objectsKeyPattern?: any): Grant
 ```
 
-Grant read permissions for this bucket and it's contents to an IAM principal (Role/Group/User).
+Grant read permissions for this bucket and its contents to an IAM principal (Role/Group/User).
 
 If encryption is used, permission to use the key to decrypt the contents
 of the bucket will also be granted to the same principal.
+
+
+The use of this method is discouraged. Please use `grants.read()` instead.
+
+[disable-awslint:no-grants]
 
 ###### `identity`<sup>Required</sup> <a name="identity" id="@layertwo/cdk-constructs.SecureBucket.grantRead.parameter.identity"></a>
 
@@ -1487,18 +1643,9 @@ Parameter type is `any` but `string` should be passed in.
 public grantReadWrite(identity: IGrantable, objectsKeyPattern?: any): Grant
 ```
 
-Grants read/write permissions for this bucket and it's contents to an IAM principal (Role/Group/User).
+The use of this method is discouraged. Please use `grants.readWrite()` instead.
 
-If an encryption key is used, permission to use the key for
-encrypt/decrypt will also be granted.
-
-Before CDK version 1.85.0, this method granted the `s3:PutObject*` permission that included `s3:PutObjectAcl`,
-which could be used to grant read/write object access to IAM principals in other accounts.
-If you want to get rid of that behavior, update your CDK version to 1.85.0 or later,
-and make sure the `@aws-cdk/aws-s3:grantWriteWithoutAcl` feature flag is set to `true`
-in the `context` key of your cdk.json file.
-If you've already updated, but still need the principal to have permissions to modify the ACLs,
-use the `grantPutAcl` method.
+[disable-awslint:no-grants]
 
 ###### `identity`<sup>Required</sup> <a name="identity" id="@layertwo/cdk-constructs.SecureBucket.grantReadWrite.parameter.identity"></a>
 
@@ -1523,6 +1670,11 @@ Grant replication permission to a principal. This method allows the principal to
 Note that when calling this function for source or destination buckets that support KMS encryption,
 you need to specify the KMS key for encryption and the KMS key for decryption, respectively.
 
+
+The use of this method is discouraged. Please use `grants.replicationPermission()` instead.
+
+[disable-awslint:no-grants]
+
 ###### `identity`<sup>Required</sup> <a name="identity" id="@layertwo/cdk-constructs.SecureBucket.grantReplicationPermission.parameter.identity"></a>
 
 - *Type:* aws-cdk-lib.aws_iam.IGrantable
@@ -1545,18 +1697,9 @@ The properties of the replication source and destination buckets.
 public grantWrite(identity: IGrantable, objectsKeyPattern?: any, allowedActionPatterns?: string[]): Grant
 ```
 
-Grant write permissions to this bucket to an IAM principal.
+The use of this method is discouraged. Please use `grants.write()` instead.
 
-If encryption is used, permission to use the key to encrypt the contents
-of written files will also be granted to the same principal.
-
-Before CDK version 1.85.0, this method granted the `s3:PutObject*` permission that included `s3:PutObjectAcl`,
-which could be used to grant read/write object access to IAM principals in other accounts.
-If you want to get rid of that behavior, update your CDK version to 1.85.0 or later,
-and make sure the `@aws-cdk/aws-s3:grantWriteWithoutAcl` feature flag is set to `true`
-in the `context` key of your cdk.json file.
-If you've already updated, but still need the principal to have permissions to modify the ACLs,
-use the `grantPutAcl` method.
+[disable-awslint:no-grants]
 
 ###### `identity`<sup>Required</sup> <a name="identity" id="@layertwo/cdk-constructs.SecureBucket.grantWrite.parameter.identity"></a>
 
@@ -2057,17 +2200,20 @@ allow legacy bucket naming style, default is false.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.env">env</a></code> | <code>aws-cdk-lib.interfaces.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.bucketArn">bucketArn</a></code> | <code>string</code> | The ARN of the bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.bucketDomainName">bucketDomainName</a></code> | <code>string</code> | The IPv4 DNS name of the specified bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.bucketDualStackDomainName">bucketDualStackDomainName</a></code> | <code>string</code> | The IPv6 DNS name of the specified bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.bucketName">bucketName</a></code> | <code>string</code> | The name of the bucket. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.bucketRef">bucketRef</a></code> | <code>aws-cdk-lib.interfaces.aws_s3.BucketReference</code> | A reference to a Bucket resource. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.bucketRegionalDomainName">bucketRegionalDomainName</a></code> | <code>string</code> | The regional domain name of the specified bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.bucketWebsiteDomainName">bucketWebsiteDomainName</a></code> | <code>string</code> | The Domain name of the static website. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.bucketWebsiteUrl">bucketWebsiteUrl</a></code> | <code>string</code> | The URL of the static website. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.grants">grants</a></code> | <code>aws-cdk-lib.aws_s3.BucketGrants</code> | Collection of grant methods for a Bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.encryptionKey">encryptionKey</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | Optional KMS encryption key associated with this bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.isWebsite">isWebsite</a></code> | <code>boolean</code> | If this bucket has been configured for static website hosting. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.disallowPublicAccess">disallowPublicAccess</a></code> | <code>boolean</code> | Whether to disallow public access. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.policy">policy</a></code> | <code>aws-cdk-lib.aws_s3.BucketPolicy</code> | The resource policy associated with this bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucket.property.replicationRoleArn">replicationRoleArn</a></code> | <code>string</code> | Role used to set up permissions on this bucket for replication. |
 
@@ -2091,16 +2237,17 @@ The tree node.
 public readonly env: ResourceEnvironment;
 ```
 
-- *Type:* aws-cdk-lib.ResourceEnvironment
+- *Type:* aws-cdk-lib.interfaces.ResourceEnvironment
 
 The environment this resource belongs to.
 
-For resources that are created and managed by the CDK
-(generally, those created by creating new class instances like Role, Bucket, etc.),
-this is always the same as the environment of the stack they belong to;
-however, for imported resources
-(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
-that might be different than the stack they were imported into.
+For resources that are created and managed in a Stack (those created by
+creating new class instances like `new Role()`, `new Bucket()`, etc.), this
+is always the same as the environment of the stack they belong to.
+
+For referenced resources (those obtained from referencing methods like
+`Role.fromRoleArn()`, `Bucket.fromBucketName()`, etc.), they might be
+different than the stack they were imported into.
 
 ---
 
@@ -2164,6 +2311,18 @@ The name of the bucket.
 
 ---
 
+##### `bucketRef`<sup>Required</sup> <a name="bucketRef" id="@layertwo/cdk-constructs.SecureBucket.property.bucketRef"></a>
+
+```typescript
+public readonly bucketRef: BucketReference;
+```
+
+- *Type:* aws-cdk-lib.interfaces.aws_s3.BucketReference
+
+A reference to a Bucket resource.
+
+---
+
 ##### `bucketRegionalDomainName`<sup>Required</sup> <a name="bucketRegionalDomainName" id="@layertwo/cdk-constructs.SecureBucket.property.bucketRegionalDomainName"></a>
 
 ```typescript
@@ -2200,6 +2359,18 @@ The URL of the static website.
 
 ---
 
+##### `grants`<sup>Required</sup> <a name="grants" id="@layertwo/cdk-constructs.SecureBucket.property.grants"></a>
+
+```typescript
+public readonly grants: BucketGrants;
+```
+
+- *Type:* aws-cdk-lib.aws_s3.BucketGrants
+
+Collection of grant methods for a Bucket.
+
+---
+
 ##### `encryptionKey`<sup>Optional</sup> <a name="encryptionKey" id="@layertwo/cdk-constructs.SecureBucket.property.encryptionKey"></a>
 
 ```typescript
@@ -2221,6 +2392,18 @@ public readonly isWebsite: boolean;
 - *Type:* boolean
 
 If this bucket has been configured for static website hosting.
+
+---
+
+##### `disallowPublicAccess`<sup>Optional</sup> <a name="disallowPublicAccess" id="@layertwo/cdk-constructs.SecureBucket.property.disallowPublicAccess"></a>
+
+```typescript
+public readonly disallowPublicAccess: boolean;
+```
+
+- *Type:* boolean
+
+Whether to disallow public access.
 
 ---
 
@@ -2315,10 +2498,12 @@ new SecureTable(scope: Construct, id: string, props: SecureTableProps)
 | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.with">with</a></code> | Applies one or more mixins to this construct. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.applyCrossStackReferenceStrength">applyCrossStackReferenceStrength</a></code> | Override the cross-stack reference strength for this resource. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
-| <code><a href="#@layertwo/cdk-constructs.SecureTable.addToResourcePolicy">addToResourcePolicy</a></code> | Adds a statement to the resource policy associated with this file system. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.addToResourcePolicy">addToResourcePolicy</a></code> | Adds a statement to the resource policy associated with this table. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.grant">grant</a></code> | Adds an IAM policy statement associated with this table to an IAM principal's policy. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.grantFullAccess">grantFullAccess</a></code> | Permits all DynamoDB operations ("dynamodb:*") to an IAM principal. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.grantOnKey">grantOnKey</a></code> | Gives permissions to a grantable entity to perform actions on the encryption key. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.grantReadData">grantReadData</a></code> | Permits an IAM principal all data read operations from this table: BatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan, DescribeTable. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.grantReadWriteData">grantReadWriteData</a></code> | Permits an IAM principal to all data read/write operations to this table. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.grantStream">grantStream</a></code> | Adds an IAM policy statement associated with this table's stream to an IAM principal's policy. |
@@ -2343,6 +2528,7 @@ new SecureTable(scope: Construct, id: string, props: SecureTableProps)
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.autoScaleReadCapacity">autoScaleReadCapacity</a></code> | Enable read capacity scaling for this table. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.autoScaleWriteCapacity">autoScaleWriteCapacity</a></code> | Enable write capacity scaling for this table. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.schema">schema</a></code> | Get schema attributes of table or index. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.schemaV2">schemaV2</a></code> | Get schema attributes of table or index. |
 
 ---
 
@@ -2371,7 +2557,27 @@ constructs.
 
 - *Type:* ...constructs.IMixin[]
 
-The mixins to apply.
+---
+
+##### `applyCrossStackReferenceStrength` <a name="applyCrossStackReferenceStrength" id="@layertwo/cdk-constructs.SecureTable.applyCrossStackReferenceStrength"></a>
+
+```typescript
+public applyCrossStackReferenceStrength(strength: ReferenceStrength): void
+```
+
+Override the cross-stack reference strength for this resource.
+
+When set, any cross-stack reference to this resource will use the specified
+mechanism instead of the global default determined by the
+`@aws-cdk/core:defaultCrossStackReferences` context key. This is useful for
+selectively weakening specific references to avoid the "deadly embrace" problem
+without changing the app-wide default.
+
+###### `strength`<sup>Required</sup> <a name="strength" id="@layertwo/cdk-constructs.SecureTable.applyCrossStackReferenceStrength.parameter.strength"></a>
+
+- *Type:* aws-cdk-lib.ReferenceStrength
+
+The reference strength to use for this resource.
 
 ---
 
@@ -2403,11 +2609,11 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 public addToResourcePolicy(statement: PolicyStatement): AddToResourcePolicyResult
 ```
 
-Adds a statement to the resource policy associated with this file system.
+Adds a statement to the resource policy associated with this table.
 
 A resource policy will be automatically created upon the first call to `addToResourcePolicy`.
 
-Note that this does not work with imported file systems.
+Note that this does not work with imported tables.
 
 ###### `statement`<sup>Required</sup> <a name="statement" id="@layertwo/cdk-constructs.SecureTable.addToResourcePolicy.parameter.statement"></a>
 
@@ -2427,6 +2633,7 @@ Adds an IAM policy statement associated with this table to an IAM principal's po
 
 If `encryptionKey` is present, appropriate grants to the key needs to be added
 separately using the `table.encryptionKey.grant*` methods.
+[disable-awslint:no-grants]
 
 ###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grant.parameter.grantee"></a>
 
@@ -2455,11 +2662,36 @@ Permits all DynamoDB operations ("dynamodb:*") to an IAM principal.
 Appropriate grants will also be added to the customer-managed KMS key
 if one was configured.
 
+
+The use of this method is discouraged. Please use `grants.fullAccess()` instead.
+
+[disable-awslint:no-grants]
+
 ###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grantFullAccess.parameter.grantee"></a>
 
 - *Type:* aws-cdk-lib.aws_iam.IGrantable
 
 The principal to grant access to.
+
+---
+
+##### `grantOnKey` <a name="grantOnKey" id="@layertwo/cdk-constructs.SecureTable.grantOnKey"></a>
+
+```typescript
+public grantOnKey(grantee: IGrantable, actions: ...string[]): GrantOnKeyResult
+```
+
+Gives permissions to a grantable entity to perform actions on the encryption key.
+
+###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grantOnKey.parameter.grantee"></a>
+
+- *Type:* aws-cdk-lib.aws_iam.IGrantable
+
+---
+
+###### `actions`<sup>Required</sup> <a name="actions" id="@layertwo/cdk-constructs.SecureTable.grantOnKey.parameter.actions"></a>
+
+- *Type:* ...string[]
 
 ---
 
@@ -2473,6 +2705,11 @@ Permits an IAM principal all data read operations from this table: BatchGetItem,
 
 Appropriate grants will also be added to the customer-managed KMS key
 if one was configured.
+
+
+The use of this method is discouraged. Please use `grants.readData()` instead.
+
+[disable-awslint:no-grants]
 
 ###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grantReadData.parameter.grantee"></a>
 
@@ -2496,6 +2733,11 @@ BatchWriteItem, PutItem, UpdateItem, DeleteItem, DescribeTable
 Appropriate grants will also be added to the customer-managed KMS key
 if one was configured.
 
+
+The use of this method is discouraged. Please use `grants.readWriteData()` instead.
+
+[disable-awslint:no-grants]
+
 ###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grantReadWriteData.parameter.grantee"></a>
 
 - *Type:* aws-cdk-lib.aws_iam.IGrantable
@@ -2514,6 +2756,11 @@ Adds an IAM policy statement associated with this table's stream to an IAM princ
 
 If `encryptionKey` is present, appropriate grants to the key needs to be added
 separately using the `table.encryptionKey.grant*` methods.
+
+
+The use of this method is discouraged. Please use `streamGrants.stream()` instead.
+
+[disable-awslint:no-grants]
 
 ###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grantStream.parameter.grantee"></a>
 
@@ -2542,6 +2789,11 @@ Permits an IAM principal all stream data read operations for this table's stream
 Appropriate grants will also be added to the customer-managed KMS key
 if one was configured.
 
+
+The use of this method is discouraged. Please use `streamGrants.streamRead()` instead.
+
+[disable-awslint:no-grants]
+
 ###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grantStreamRead.parameter.grantee"></a>
 
 - *Type:* aws-cdk-lib.aws_iam.IGrantable
@@ -2557,6 +2809,10 @@ public grantTableListStreams(grantee: IGrantable): Grant
 ```
 
 Permits an IAM Principal to list streams attached to current dynamodb table.
+
+The use of this method is discouraged. Please use `streamGrants.tableListStreams()` instead.
+
+[disable-awslint:no-grants]
 
 ###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grantTableListStreams.parameter.grantee"></a>
 
@@ -2576,6 +2832,11 @@ Permits an IAM principal all data write operations to this table: BatchWriteItem
 
 Appropriate grants will also be added to the customer-managed KMS key
 if one was configured.
+
+
+The use of this method is discouraged. Please use `grants.writeData()` instead.
+
+[disable-awslint:no-grants]
 
 ###### `grantee`<sup>Required</sup> <a name="grantee" id="@layertwo/cdk-constructs.SecureTable.grantWriteData.parameter.grantee"></a>
 
@@ -2884,7 +3145,7 @@ Enable write capacity scaling for this table.
 
 ---
 
-##### `schema` <a name="schema" id="@layertwo/cdk-constructs.SecureTable.schema"></a>
+##### ~~`schema`~~ <a name="schema" id="@layertwo/cdk-constructs.SecureTable.schema"></a>
 
 ```typescript
 public schema(indexName?: string): SchemaOptions
@@ -2893,6 +3154,20 @@ public schema(indexName?: string): SchemaOptions
 Get schema attributes of table or index.
 
 ###### `indexName`<sup>Optional</sup> <a name="indexName" id="@layertwo/cdk-constructs.SecureTable.schema.parameter.indexName"></a>
+
+- *Type:* string
+
+---
+
+##### `schemaV2` <a name="schemaV2" id="@layertwo/cdk-constructs.SecureTable.schemaV2"></a>
+
+```typescript
+public schemaV2(indexName?: string): KeySchema
+```
+
+Get schema attributes of table or index.
+
+###### `indexName`<sup>Optional</sup> <a name="indexName" id="@layertwo/cdk-constructs.SecureTable.schemaV2.parameter.indexName"></a>
 
 - *Type:* string
 
@@ -3082,11 +3357,15 @@ The table's name.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@layertwo/cdk-constructs.SecureTable.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.property.env">env</a></code> | <code>aws-cdk-lib.interfaces.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.property.grants">grants</a></code> | <code>aws-cdk-lib.aws_dynamodb.TableGrants</code> | Grant a predefined set of permissions on this Table. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.property.streamGrants">streamGrants</a></code> | <code>aws-cdk-lib.aws_dynamodb.StreamGrants</code> | Grant a predefined set of permissions on this Table's Stream, if present. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.property.tableArn">tableArn</a></code> | <code>string</code> | Arn of the dynamodb table. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.property.tableName">tableName</a></code> | <code>string</code> | Table name of the dynamodb table. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.property.tableRef">tableRef</a></code> | <code>aws-cdk-lib.interfaces.aws_dynamodb.TableReference</code> | A reference to a Table resource. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.property.encryptionKey">encryptionKey</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | KMS encryption key, if this table uses a customer-managed encryption key. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTable.property.regions">regions</a></code> | <code>string[]</code> | Additional regions other than the main one that this table is replicated to. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.property.tableStreamArn">tableStreamArn</a></code> | <code>string</code> | ARN of the table's stream, if there is one. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTable.property.resourcePolicy">resourcePolicy</a></code> | <code>aws-cdk-lib.aws_iam.PolicyDocument</code> | Resource policy to assign to DynamoDB Table. |
 
@@ -3110,16 +3389,17 @@ The tree node.
 public readonly env: ResourceEnvironment;
 ```
 
-- *Type:* aws-cdk-lib.ResourceEnvironment
+- *Type:* aws-cdk-lib.interfaces.ResourceEnvironment
 
 The environment this resource belongs to.
 
-For resources that are created and managed by the CDK
-(generally, those created by creating new class instances like Role, Bucket, etc.),
-this is always the same as the environment of the stack they belong to;
-however, for imported resources
-(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
-that might be different than the stack they were imported into.
+For resources that are created and managed in a Stack (those created by
+creating new class instances like `new Role()`, `new Bucket()`, etc.), this
+is always the same as the environment of the stack they belong to.
+
+For referenced resources (those obtained from referencing methods like
+`Role.fromRoleArn()`, `Bucket.fromBucketName()`, etc.), they might be
+different than the stack they were imported into.
 
 ---
 
@@ -3132,6 +3412,32 @@ public readonly stack: Stack;
 - *Type:* aws-cdk-lib.Stack
 
 The stack in which this resource is defined.
+
+---
+
+##### `grants`<sup>Required</sup> <a name="grants" id="@layertwo/cdk-constructs.SecureTable.property.grants"></a>
+
+```typescript
+public readonly grants: TableGrants;
+```
+
+- *Type:* aws-cdk-lib.aws_dynamodb.TableGrants
+
+Grant a predefined set of permissions on this Table.
+
+---
+
+##### `streamGrants`<sup>Required</sup> <a name="streamGrants" id="@layertwo/cdk-constructs.SecureTable.property.streamGrants"></a>
+
+```typescript
+public readonly streamGrants: StreamGrants;
+```
+
+- *Type:* aws-cdk-lib.aws_dynamodb.StreamGrants
+
+Grant a predefined set of permissions on this Table's Stream, if present.
+
+Will throw if the Table has not been configured for streaming.
 
 ---
 
@@ -3159,6 +3465,18 @@ Table name of the dynamodb table.
 
 ---
 
+##### `tableRef`<sup>Required</sup> <a name="tableRef" id="@layertwo/cdk-constructs.SecureTable.property.tableRef"></a>
+
+```typescript
+public readonly tableRef: TableReference;
+```
+
+- *Type:* aws-cdk-lib.interfaces.aws_dynamodb.TableReference
+
+A reference to a Table resource.
+
+---
+
 ##### `encryptionKey`<sup>Optional</sup> <a name="encryptionKey" id="@layertwo/cdk-constructs.SecureTable.property.encryptionKey"></a>
 
 ```typescript
@@ -3168,6 +3486,18 @@ public readonly encryptionKey: IKey;
 - *Type:* aws-cdk-lib.aws_kms.IKey
 
 KMS encryption key, if this table uses a customer-managed encryption key.
+
+---
+
+##### `regions`<sup>Optional</sup> <a name="regions" id="@layertwo/cdk-constructs.SecureTable.property.regions"></a>
+
+```typescript
+public readonly regions: string[];
+```
+
+- *Type:* string[]
+
+Additional regions other than the main one that this table is replicated to.
 
 ---
 
@@ -3241,6 +3571,7 @@ const dnsValidatedCertificateProps: DnsValidatedCertificateProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificateProps.property.domainName">domainName</a></code> | <code>string</code> | Fully-qualified domain name to request a certificate for. |
+| <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificateProps.property.allowExport">allowExport</a></code> | <code>boolean</code> | Enable or disable export of this certificate. |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificateProps.property.certificateName">certificateName</a></code> | <code>string</code> | The Certificate name. |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificateProps.property.keyAlgorithm">keyAlgorithm</a></code> | <code>aws-cdk-lib.aws_certificatemanager.KeyAlgorithm</code> | Specifies the algorithm of the public and private key pair that your certificate uses to encrypt data. |
 | <code><a href="#@layertwo/cdk-constructs.DnsValidatedCertificateProps.property.subjectAlternativeNames">subjectAlternativeNames</a></code> | <code>string[]</code> | Alternative domain names on your certificate. |
@@ -3261,6 +3592,22 @@ public readonly domainName: string;
 Fully-qualified domain name to request a certificate for.
 
 May contain wildcards, such as ``*.domain.com``.
+
+---
+
+##### `allowExport`<sup>Optional</sup> <a name="allowExport" id="@layertwo/cdk-constructs.DnsValidatedCertificateProps.property.allowExport"></a>
+
+```typescript
+public readonly allowExport: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Enable or disable export of this certificate.
+
+If you issue an exportable public certificate, there is a charge at certificate issuance and again when the certificate renews.
+Ref: https://aws.amazon.com/certificate-manager/pricing
 
 ---
 
@@ -3487,11 +3834,15 @@ const secureBucketProps: SecureBucketProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.abacStatus">abacStatus</a></code> | <code>boolean</code> | Enables Amazon S3 to evaluate the ABAC policy in the request. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.accessControl">accessControl</a></code> | <code>aws-cdk-lib.aws_s3.BucketAccessControl</code> | Specifies a canned ACL that grants predefined permissions to the bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.autoDeleteObjects">autoDeleteObjects</a></code> | <code>boolean</code> | Whether all objects should be automatically deleted when the bucket is removed from the stack or when the stack is deleted. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.blockedEncryptionTypes">blockedEncryptionTypes</a></code> | <code>aws-cdk-lib.aws_s3.BlockedEncryptionType[]</code> | Encryption types that should be blocked for this bucket. Use `NONE` to allow all encryption types. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.blockPublicAccess">blockPublicAccess</a></code> | <code>aws-cdk-lib.aws_s3.BlockPublicAccess</code> | The block public access configuration of this bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.bucketKeyEnabled">bucketKeyEnabled</a></code> | <code>boolean</code> | Whether Amazon S3 should use its own intermediary key to generate data keys. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.bucketName">bucketName</a></code> | <code>string</code> | Physical name of this bucket. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.bucketNamePrefix">bucketNamePrefix</a></code> | <code>string</code> | A prefix for the bucket name in the account-regional namespace. |
+| <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.bucketNamespace">bucketNamespace</a></code> | <code>aws-cdk-lib.aws_s3.BucketNamespace</code> | The namespace for the bucket name. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.cors">cors</a></code> | <code>aws-cdk-lib.aws_s3.CorsRule[]</code> | The CORS configuration of this bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.encryption">encryption</a></code> | <code>aws-cdk-lib.aws_s3.BucketEncryption</code> | The kind of server-side encryption to apply to this bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.encryptionKey">encryptionKey</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | External KMS key to use for bucket encryption. |
@@ -3521,6 +3872,23 @@ const secureBucketProps: SecureBucketProps = { ... }
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.websiteIndexDocument">websiteIndexDocument</a></code> | <code>string</code> | The name of the index document (e.g. "index.html") for the website. Enables static website hosting for this bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.websiteRedirect">websiteRedirect</a></code> | <code>aws-cdk-lib.aws_s3.RedirectTarget</code> | Specifies the redirect behavior of all requests to a website endpoint of a bucket. |
 | <code><a href="#@layertwo/cdk-constructs.SecureBucketProps.property.websiteRoutingRules">websiteRoutingRules</a></code> | <code>aws-cdk-lib.aws_s3.RoutingRule[]</code> | Rules that define when a redirect is applied and the redirect behavior. |
+
+---
+
+##### `abacStatus`<sup>Optional</sup> <a name="abacStatus" id="@layertwo/cdk-constructs.SecureBucketProps.property.abacStatus"></a>
+
+```typescript
+public readonly abacStatus: boolean;
+```
+
+- *Type:* boolean
+- *Default:* The ABAC status is not set
+
+Enables Amazon S3 to evaluate the ABAC policy in the request.
+
+Set to true to enable ABAC, false to explicitly disable it.
+
+> [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html#cfn-s3-bucket-abacstatus](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html#cfn-s3-bucket-abacstatus)
 
 ---
 
@@ -3559,6 +3927,22 @@ Setting `autoDeleteObjects` to true on a bucket will add `s3:PutBucketPolicy` to
 bucket policy. This is because during bucket deletion, the custom resource provider
 needs to update the bucket policy by adding a deny policy for `s3:PutObject` to
 prevent race conditions with external bucket writers.
+
+---
+
+##### `blockedEncryptionTypes`<sup>Optional</sup> <a name="blockedEncryptionTypes" id="@layertwo/cdk-constructs.SecureBucketProps.property.blockedEncryptionTypes"></a>
+
+```typescript
+public readonly blockedEncryptionTypes: BlockedEncryptionType[];
+```
+
+- *Type:* aws-cdk-lib.aws_s3.BlockedEncryptionType[]
+- *Default:* Amazon S3 determines which encryption types to block.
+
+Encryption types that should be blocked for this bucket. Use `NONE` to allow all encryption types.
+
+At least one `BlockedEncryptionType` must be given. If `NONE` is given, it must be
+the only `BlockedEncryptionType` in the list.
 
 ---
 
@@ -3608,6 +3992,50 @@ public readonly bucketName: string;
 - *Default:* Assigned by CloudFormation (recommended).
 
 Physical name of this bucket.
+
+Cannot be used together with `bucketNamePrefix` or `bucketNamespace`.
+
+---
+
+##### `bucketNamePrefix`<sup>Optional</sup> <a name="bucketNamePrefix" id="@layertwo/cdk-constructs.SecureBucketProps.property.bucketNamePrefix"></a>
+
+```typescript
+public readonly bucketNamePrefix: string;
+```
+
+- *Type:* string
+- *Default:* No prefix.
+
+A prefix for the bucket name in the account-regional namespace.
+
+Requires `bucketNamespace` to be set to `ACCOUNT_REGIONAL`.
+Cannot be used together with `bucketName`.
+
+CloudFormation appends `-<accountId>-<region>-an` to form the full name.
+For example, `my-app` becomes `my-app-123456789012-us-east-1-an`.
+
+Must contain only lowercase letters, numbers, and hyphens.
+Must start and end with a lowercase letter or number.
+
+---
+
+##### `bucketNamespace`<sup>Optional</sup> <a name="bucketNamespace" id="@layertwo/cdk-constructs.SecureBucketProps.property.bucketNamespace"></a>
+
+```typescript
+public readonly bucketNamespace: BucketNamespace;
+```
+
+- *Type:* aws-cdk-lib.aws_s3.BucketNamespace
+- *Default:* Global namespace.
+
+The namespace for the bucket name.
+
+AWS recommends `ACCOUNT_REGIONAL` for improved security, as bucket names
+are scoped to your account and cannot be claimed by other accounts.
+When set to `ACCOUNT_REGIONAL`, `bucketNamePrefix` is required.
+When set to `GLOBAL`, it can be used standalone to explicitly specify the default namespace.
+
+> [https://docs.aws.amazon.com/AmazonS3/latest/userguide/gpbucketnamespaces.html](https://docs.aws.amazon.com/AmazonS3/latest/userguide/gpbucketnamespaces.html)
 
 ---
 
@@ -3695,7 +4123,7 @@ public readonly intelligentTieringConfigurations: IntelligentTieringConfiguratio
 ```
 
 - *Type:* aws-cdk-lib.aws_s3.IntelligentTieringConfiguration[]
-- *Default:* No Intelligent Tiiering Configurations.
+- *Default:* No Intelligent Tiering Configurations.
 
 Intelligent Tiering Configurations.
 
@@ -4057,6 +4485,7 @@ const secureTableProps: SecureTableProps = { ... }
 | <code><a href="#@layertwo/cdk-constructs.SecureTableProps.property.sortKey">sortKey</a></code> | <code>aws-cdk-lib.aws_dynamodb.Attribute</code> | Sort key attribute definition. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTableProps.property.billingMode">billingMode</a></code> | <code>aws-cdk-lib.aws_dynamodb.BillingMode</code> | Specify how you are charged for read and write throughput and how you manage capacity. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTableProps.property.contributorInsightsEnabled">contributorInsightsEnabled</a></code> | <code>boolean</code> | Whether CloudWatch contributor insights is enabled. |
+| <code><a href="#@layertwo/cdk-constructs.SecureTableProps.property.contributorInsightsSpecification">contributorInsightsSpecification</a></code> | <code>aws-cdk-lib.aws_dynamodb.ContributorInsightsSpecification</code> | Whether CloudWatch contributor insights is enabled and what mode is selected. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTableProps.property.deletionProtection">deletionProtection</a></code> | <code>boolean</code> | Enables deletion protection for the table. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTableProps.property.encryption">encryption</a></code> | <code>aws-cdk-lib.aws_dynamodb.TableEncryption</code> | Whether server-side encryption with an AWS managed customer master key is enabled. |
 | <code><a href="#@layertwo/cdk-constructs.SecureTableProps.property.encryptionKey">encryptionKey</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | External KMS key to use for table encryption. |
@@ -4083,15 +4512,20 @@ const secureTableProps: SecureTableProps = { ... }
 
 ---
 
-##### `partitionKey`<sup>Required</sup> <a name="partitionKey" id="@layertwo/cdk-constructs.SecureTableProps.property.partitionKey"></a>
+##### `partitionKey`<sup>Optional</sup> <a name="partitionKey" id="@layertwo/cdk-constructs.SecureTableProps.property.partitionKey"></a>
 
 ```typescript
 public readonly partitionKey: Attribute;
 ```
 
 - *Type:* aws-cdk-lib.aws_dynamodb.Attribute
+- *Default:* exactly one of `partitionKey` and `partitionKeys` must be specified.
 
 Partition key attribute definition.
+
+If a single field forms the partition key, you can use this field.  Use the
+`partitionKeys` field if the partition key is a multi-attribute key (consists of
+multiple fields).
 
 ---
 
@@ -4105,6 +4539,10 @@ public readonly sortKey: Attribute;
 - *Default:* no sort key
 
 Sort key attribute definition.
+
+If a single field forms the sort key, you can use this field.  Use the
+`sortKeys` field if the sort key is a multi-attribute key (consists of multiple
+fields).
 
 ---
 
@@ -4121,7 +4559,9 @@ Specify how you are charged for read and write throughput and how you manage cap
 
 ---
 
-##### `contributorInsightsEnabled`<sup>Optional</sup> <a name="contributorInsightsEnabled" id="@layertwo/cdk-constructs.SecureTableProps.property.contributorInsightsEnabled"></a>
+##### ~~`contributorInsightsEnabled`~~<sup>Optional</sup> <a name="contributorInsightsEnabled" id="@layertwo/cdk-constructs.SecureTableProps.property.contributorInsightsEnabled"></a>
+
+- *Deprecated:* use `contributorInsightsSpecification instead
 
 ```typescript
 public readonly contributorInsightsEnabled: boolean;
@@ -4131,6 +4571,19 @@ public readonly contributorInsightsEnabled: boolean;
 - *Default:* false
 
 Whether CloudWatch contributor insights is enabled.
+
+---
+
+##### `contributorInsightsSpecification`<sup>Optional</sup> <a name="contributorInsightsSpecification" id="@layertwo/cdk-constructs.SecureTableProps.property.contributorInsightsSpecification"></a>
+
+```typescript
+public readonly contributorInsightsSpecification: ContributorInsightsSpecification;
+```
+
+- *Type:* aws-cdk-lib.aws_dynamodb.ContributorInsightsSpecification
+- *Default:* contributor insights is not enabled
+
+Whether CloudWatch contributor insights is enabled and what mode is selected.
 
 ---
 
@@ -4429,7 +4882,7 @@ Specify values to pre-warm you DynamoDB Table Warm Throughput feature is not ava
 
 To enable Warm Throughput, use the `TableV2` construct instead.
 
-> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-warmthroughput](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-warmthroughput)
+> [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-warmthroughput](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-warmthroughput)
 
 ---
 

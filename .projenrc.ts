@@ -2,7 +2,7 @@ import { awscdk } from "projen";
 const project = new awscdk.AwsCdkConstructLibrary({
   author: "Lucas Messenger",
   authorAddress: "1335960+layertwo@users.noreply.github.com",
-  cdkVersion: "2.200.0",
+  cdkVersion: "2.275.0",
   defaultReleaseBranch: "mainline",
   jsiiVersion: "~5.9.0",
   name: "layertwo-cdk-constructs",

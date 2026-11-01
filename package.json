@@ -5,26 +5,26 @@
     "url": "https://github.com/layertwo/cdk-constructs"
   },
   "scripts": {
-    "build": "npx projen build",
-    "bump": "npx projen bump",
-    "clobber": "npx projen clobber",
-    "compat": "npx projen compat",
-    "compile": "npx projen compile",
-    "default": "npx projen default",
-    "docgen": "npx projen docgen",
-    "eject": "npx projen eject",
-    "eslint": "npx projen eslint",
-    "package": "npx projen package",
-    "package-all": "npx projen package-all",
-    "package:js": "npx projen package:js",
-    "post-compile": "npx projen post-compile",
-    "pre-compile": "npx projen pre-compile",
-    "release:mainline": "npx projen release:mainline",
-    "test": "npx projen test",
-    "test:watch": "npx projen test:watch",
-    "unbump": "npx projen unbump",
-    "watch": "npx projen watch",
-    "projen": "npx projen"
+    "build": "projen build",
+    "bump": "projen bump",
+    "clobber": "projen clobber",
+    "compat": "projen compat",
+    "compile": "projen compile",
+    "default": "projen default",
+    "docgen": "projen docgen",
+    "eject": "projen eject",
+    "eslint": "projen eslint",
+    "package": "projen package",
+    "package-all": "projen package-all",
+    "package:js": "projen package:js",
+    "post-compile": "projen post-compile",
+    "pre-compile": "projen pre-compile",
+    "release:mainline": "projen release:mainline",
+    "test": "projen test",
+    "test:watch": "projen test:watch",
+    "unbump": "projen unbump",
+    "watch": "projen watch",
+    "projen": "projen"
   },
   "author": {
     "name": "Lucas Messenger",
@@ -36,16 +36,16 @@
     "@types/node": "^25.3.0",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
-    "aws-cdk-lib": "2.200.0",
+    "aws-cdk-lib": "2.275.0",
     "commit-and-tag-version": "^12",
-    "constructs": "10.0.5",
+    "constructs": "10.5.1",
     "eslint": "^9",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.2.0",
-    "jest-junit": "^16",
+    "jest-junit": "^17",
     "jsii": "~5.9.0",
     "jsii-diff": "^1.126.0",
     "jsii-docgen": "^10.5.0",
@@ -58,14 +58,15 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.200.0",
-    "constructs": "^10.0.5"
+    "aws-cdk-lib": "^2.275.0",
+    "constructs": "^10.5.1"
   },
   "keywords": [
     "cdk"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "stability": "stable",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -116,7 +117,6 @@
     }
   },
   "types": "lib/index.d.ts",
-  "stability": "stable",
   "jsii": {
     "outdir": "dist",
     "targets": {},

@@ -71,8 +71,7 @@ export class GitHubOidcRole extends Role {
 
     // Create or reference the GitHub OIDC provider
     let provider = stack.node.tryFindChild("GitHubOidcProvider") as
-      | OpenIdConnectProvider
-      | undefined;
+      OpenIdConnectProvider | undefined;
     if (!provider) {
       provider = new OpenIdConnectProvider(stack, "GitHubOidcProvider", {
         url: "https://token.actions.githubusercontent.com",
