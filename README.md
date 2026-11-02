@@ -27,15 +27,18 @@ npm install @layertwo/cdk-constructs
 | `SecureTable` | `dynamodb.Table` | On-demand billing (`PAY_PER_REQUEST`), point-in-time recovery always enabled. |
 | `GitHubOidcRole` | `iam.Role` | Role assumable by GitHub Actions via OIDC, scoped to a repo and optionally a branch or environment. |
 | `DnsValidatedCertificate` | `certificatemanager.Certificate` | Always DNS-validated against the supplied Route53 hosted zone. |
+| `PythonFunction` | `lambda.Function` | Bundles a `uv` project in Docker, hashes the source tree (no re-upload when nothing changed), ARM64 + Python 3.15 by default. |
 
 Everything marked *enforced* is hardcoded after your props are spread in — passing your own value for it is silently ignored. All other props pass straight through to the parent construct.
 
 ## Usage
 
 ```typescript
+import * as path from "node:path";
 import {
   DnsValidatedCertificate,
   GitHubOidcRole,
+  PythonFunction,
   SecureBucket,
   SecureTable,
 } from "@layertwo/cdk-constructs";
@@ -61,7 +64,48 @@ new DnsValidatedCertificate(this, "Cert", {
   domainName: "example.com",
   hostedZone: HostedZone.fromLookup(this, "Zone", { domainName: "example.com" }),
 });
+
+// Python Lambda from a uv project (built in Docker at synth time)
+new PythonFunction(this, "Fetcher", {
+  rootDir: path.join(__dirname, "../services/fetcher"),
+  index: "src/entrypoint/__init__.py",
+  handler: "handle_event",
+  environment: { TABLE_NAME: table.tableName },
+});
 ```
+
+### Python bundling and caching
+
+`PythonFunction` builds inside an Amazon Linux 2023 container (glibc matches Lambda), so it needs Docker at synth time. The asset is fingerprinted from the project source — `uv.lock` changes rebuild it, caches and `.venv` do not.
+
+Two things make that fast in CI:
+
+```yaml
+# Skip bundling entirely when the source hash matches a previous run.
+- uses: actions/cache@v4
+  with:
+    path: cdk.out
+    key: cdk-assets-${{ github.sha }}
+    restore-keys: cdk-assets-
+
+# Cache the image layers; type=gha needs BuildKit, and fails on a plain local daemon.
+- uses: docker/setup-buildx-action@v3
+```
+
+```typescript
+const cacheScope = "lambda-bundling";
+new PythonFunction(this, "Fetcher", {
+  rootDir,
+  bundling: process.env.CI
+    ? {
+        cacheFrom: [{ type: "gha", params: { scope: cacheScope } }],
+        cacheTo: { type: "gha", params: { mode: "max", scope: cacheScope } },
+      }
+    : {},
+});
+```
+
+The default image has no C toolchain: dependencies without a manylinux wheel fail at bundling instead of shipping a broken bundle. Pass `bundling.image` to use your own build image.
 
 ## Development
 
