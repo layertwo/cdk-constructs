@@ -1,0 +1,20 @@
+version = 1
+revision = 3
+requires-python = ">=3.12"
+
+[[package]]
+name = "sdist-app"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "uwsgi" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "uwsgi", specifier = "==2.0.28" }]
+
+[[package]]
+name = "uwsgi"
+version = "2.0.28"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/24/c2/d58480aadc9a1f420dd96fc43cf0dcd8cb5ededb95cab53743529c23b6cd/uwsgi-2.0.28.tar.gz", hash = "sha256:79ca1891ef2df14508ab0471ee8c0eb94bd2d51d03f32f90c4bbe557ab1e99d0", size = 816212, upload-time = "2024-10-26T10:06:16.107Z" }
