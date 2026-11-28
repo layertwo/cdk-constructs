@@ -23,6 +23,7 @@
     }
   ],
   "ignoreDeps": [
+    "@types/node",
     "@typescript-eslint/eslint-plugin",
     "@typescript-eslint/parser",
     "commit-and-tag-version",
@@ -31,6 +32,7 @@
     "jsii-docgen",
     "jsii-rosetta",
     "jsii",
+    "typescript",
     "aws-cdk-lib",
     "constructs",
     "projen",
